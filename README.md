@@ -1,2 +1,0 @@
-# musicanimation
-Created with CodeSandbox

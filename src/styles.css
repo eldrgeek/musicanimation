@@ -1,0 +1,9 @@
+.App {
+  font-family: Mistral;
+  text-align: center;
+}
+@font-face {
+  font-family: "Mistral";
+  font-size: 20px;
+  src: url("MISTRAL.woff") format("woff");
+}
