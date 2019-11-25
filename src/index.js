@@ -2,64 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ReactDOMServer, { renderToStaticMarkup } from "react-dom/server";
 import "./styles.css";
+import CSSJSON from "cssjson";
 
 const combine = (style1, style2) => ({ ...style1, ...style2 });
-
-const styles = {
-  circle: {
-    width: 100,
-    height: 100,
-
-    background: "white",
-    borderRadius: "50%"
-  },
-  title: {
-    fontFamily: "stencil-std, sans-serif",
-    fontStyle: "normal",
-    letterSpacing: ".2rem",
-    textIndent: ".7rem",
-    fontSize: 40,
-    color: "white",
-    whiteSpace: "nowrap"
-  },
-  rev1x1: {
-    fontFamily: "stencil-std, sans-serif",
-    fontStyle: "normal",
-    letterSpacing: ".2rem",
-    textIndent: ".7rem",
-    fontSize: 20,
-    color: "white",
-    whiteSpace: "nowrap"
-  },
-  small: {
-    fontSize: 20,
-    position: "relative",
-    top: "-5px",
-    marginBottom: "20px"
-  },
-  App: {
-    backgroundColor: "black",
-    height: "100vh",
-    width: "100hw"
-  },
-  mistral: {
-    fontFamily: "Mistral",
-    fontSize: "60px"
-  },
-  red: {
-    textAlign: "left",
-    color: "#FA39FC"
-  },
-  white: {
-    textAlign: "left",
-    color: "white"
-  },
-
-  ["@font-face"]: {
-    fontFamily: "Mistral",
-    src: 'url("MISTRAL.woff") format("woff")'
-  }
-};
 
 const About = text => {
   const split = text.split(/([~^]{2})/);
@@ -84,12 +29,13 @@ const About = text => {
 };
 
 const left = { left: 10 };
-const Circle = ({ loc }) => {
-  return <div style={combine(styles.circle, loc)} />;
+const Circle = ({ id }) => {
+  return <div id={id} className="circle" />;
 };
 
 const reCase = string =>
   string.replace(/([A-Z])/g, matches => `-${matches[0].toLowerCase()}`);
+
 const cssRule = styles =>
   Object.entries(styles).reduce((styleString, [propName, propValue]) => {
     return `${reCase(styleString)}  ${propName}:${propValue};\n`;
@@ -114,6 +60,7 @@ So maybe you’ve been called by coincidence, too.
 Maybe You’re one of the ones.
   
 For what?
+
 
 We want to start a connection revolution.  
 Maybe you’d Like to Join it.
@@ -163,26 +110,29 @@ You’re here now.
 console.log(About(aboutText1));
 
 const RevolutionURL = ({ loc = {} }) => {
-  const style = combine(loc, styles.title);
   return (
-    <div style={combine(style, { display: "inline", letterSpacing: 0 })}>
+    <div id="revolutionURL" className="stencil">
       <span> 1</span>
-      <span style={styles.small}>x</span>
+      <span id="smallx">x</span>
       <span>1</span>
     </div>
   );
 };
 
 const RevolutionTitle = ({ loc }) => {
-  return <div style={combine(loc, styles.title)}>Revolution</div>;
+  return (
+    <div id="revolutionTitle" className="stencil">
+      Revolution
+    </div>
+  );
 };
 
 const WhoAreYou = ({ loc = {} }) => {
   return (
     <React.Fragment>
-      <div style={styles.mistral}>
-        <span style={styles.red}>Who</span>{" "}
-        <span style={styles.white}>are you?</span>
+      <div id="whoareyoutext" className="stencil">
+        <span className="redscript">Who</span>{" "}
+        <span className="whitescript">are you?</span>
       </div>
     </React.Fragment>
   );
@@ -191,29 +141,47 @@ const WhoAreYou = ({ loc = {} }) => {
 const WhoAreWe = ({ loc = {} }) => {
   return (
     <React.Fragment>
-      <div style={combine(loc, styles.mistral)}>
-        <span style={styles.white}>..who are</span>{" "}
-        <span style={styles.red}>we?</span>
+      <div id="whoarewetext">
+        <span className="whitescript">..who are</span>
+        <span className="redscript">we?</span>
       </div>
     </React.Fragment>
   );
 };
 
-const loc = loc => ({ position: "absolute", ...loc });
-console.log(loc(100, 100));
+const clickYou = event => {};
+
+const clickWe = event => {};
+
+const clickVideos = event => {};
+
 function App() {
   return (
-    <div style={styles.App}>
-      <RevolutionTitle loc={loc({ top: 100, left: 100 })} />
-      <Circle loc={loc({ top: "1vh", left: "4vw" })} />
-      <Circle loc={loc({ bottom: "1vh", left: "4vw" })} />
-      <Circle loc={loc({ bottom: "1vh", right: "2vw" })} />
-      <RevolutionURL loc={loc({ bottom: "5vh" })} />
-      <WhoAreYou loc={loc({ bottom: "4vh", right: "4vw" })} />
-      <WhoAreWe loc={loc({ bottom: "4vh", right: "4vw" })} />
+    <div id="App">
+      <RevolutionTitle />
+      <Circle id="whoareyou" onClick={clickYou} />
+      <Circle id="whoarewe" onClick={clickWe} />
+      <Circle id="getvideos" onClick={clickVideos} />
+      <RevolutionURL />
+      <WhoAreYou />
+      <WhoAreWe />
     </div>
   );
 }
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
+
+const jsonObject = {
+  whatever: {
+    backgroundColor: "black",
+    color: "red"
+  }
+};
+
+var css = styles =>
+  Object.keys(styles).map(key => {
+    console.log("key", key);
+    css = console.log(css);
+  });
+console.log(css(jsonObject));

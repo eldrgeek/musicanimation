@@ -7,3 +7,87 @@
   font-size: 20px;
   src: url("MISTRAL.woff") format("woff");
 }
+/* style={combine(style, { display: "inline", letterSpacing: 0 })} */
+
+#revolutionTitle {
+  position: absolute;
+  left: 1vh;
+  top: 40vh;
+}
+.stencil {
+  position: absolute;
+  font-family: stencil-std, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.2rem;
+  text-indent: 0.7rem;
+  font-size: 3rem;
+  color: white;
+  white-space: nowrap;
+}
+.circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+}
+
+#smallx {
+  display: inline;
+  letter-spacing: 0;
+}
+#whoareyou {
+  top: 1vh;
+  left: 4vh;
+}
+
+#whoareyoutext {
+  position: absolute;
+  font-family: Mistral;
+  top: 6vh;
+  left: 4vw;
+  font-size: 60px;
+}
+
+#whoarewe {
+  top: 1vh;
+  right: 4vw;
+}
+#whoarewetext {
+  position: absolute;
+  font-family: Mistral;
+  font-size: 60px;
+  bottom: 6vh;
+  right: 8vw;
+}
+
+#getvideos {
+  bottom: 1vh;
+  right: 2vh;
+}
+
+.redscript {
+  text-align: left;
+  color: #fa39fc;
+}
+.whitescript {
+  text-align: left;
+  color: white;
+}
+#App {
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* small: {
+    fontSize: 20,
+    position: "relative",
+    top: "-5px",
+    marginBottom: "20px"
+  },
+ 
+  mistral: {
+    fontFamily: "Mistral",
+    fontSize: "60px"
+  }, */
